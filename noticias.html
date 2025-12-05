@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminário Diocesano - Website</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+</head>
+<body>
+    <header>
+        <div class="logo-area">
+            <h1>Seminário Diocesano</h1>
+            <p>Fides et Ratio (Fé e Razão)</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><li><a href="index.html">Home</a></li>
+                
+                <li>
+                    <a href="seminario.html">O Seminário ▾</a>
+                    <ul>
+                        <li><a href="seminario.html#seminario-historia">Nossa História</a></li>
+                        <li><a href="seminario.html#seminario-missao-valores">Missão e Valores</a></li>
+                        <li><a href="seminario.html#seminario-lideranca">Liderança (Reitores)</a></li>
+                        <li><a href="seminario.html#seminario-estrutura-localizacao">Estrutura e Localização</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="vocacional.html">Vocacional ▾</a>
+                    <ul>
+                        <li><a href="vocacional.html#vocacional-oquee">O que é Vocação?</a></li>
+                        <li><a href="vocacional.html#vocacional-discernimento">Discernimento</a></li>
+                        <li><a href="vocacional.html#vocacional-encontros">Encontros Vocacionais</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="formacao.html">Formação ▾</a>
+                    <ul>
+                        <li><a href="formacao.html#formacao-admissao">Admissão</a></li>
+                        <li><a href="formacao.html#formacao-cursos">Cursos (Filo/Teo)</a></li>
+                        <li><a href="formacao.html#formacao-docente">Corpo Docente</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="vida.html">Vida Seminarística ▾</a>
+                    <ul>
+                        <li><a href="vida.html#vida-rotina">Rotina e Espiritualidade</a></li>
+                        <li><a href="vida.html#vida-instalacoes">Nossas Instalações</a></li>
+                        <li><a href="vida.html#vida-galeria"">Galeria de Fotos</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content-area">
+
+		<section id="noticias" class="page-section active" style="display:block;">
+			<h2>Notícias e Eventos</h2>
+			
+			<a stryle="text-decoration: none" href="noticias/noticia-1.html">
+				<article 
+				onclick="noticias/noticia-1.html" 
+				style="
+				    border-bottom: 1px solid var(--cor-dourado-claro); 
+				    margin-bottom: 20px; 
+				    padding: 15px; 
+				    cursor: pointer; 
+				    transition: background 0.3s; 
+				    border-radius: 5px;
+				"
+				onmouseover="this.style.backgroundColor='var(--cor-creme)'"
+				onmouseout="this.style.backgroundColor='transparent'"
+			>
+				<h3 style="color: var(--cor-dourado-escuro);">Ordenação Diaconal</h3>
+				
+				<small style="color: #888;">Postado em 05/12/2025</small>
+				
+				<p style="margin-top: 5px;">
+				    Com grande alegria anunciamos a ordenação dos novos diáconos. Clique para ver as fotos e ler a matéria completa...
+				</p>
+				
+				<span style="font-size: 0.9em; color: var(--cor-dourado-medio); font-weight: bold; text-decoration: underline;">Ler mais &rarr;</span>
+			</article>
+			</a>
+		</section>
+        
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Seminário Diocesano. Todos os direitos reservados.</p>
+        <p>Desenvolvido para fins educacionais.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // 1. Esconde todas as seções
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Tenta encontrar a seção específica
+            const targetSection = document.getElementById(pageId);
+            
+            // 3. Se a seção existir, mostra ela. Se não (ex: links genéricos), mostra um alerta ou a Home.
+            if (targetSection) {
+                targetSection.classList.add('active');
+            } else {
+                // Se clicou em um link pai que não tem conteúdo próprio definido no HTML acima,
+                // apenas para o exemplo, vamos redirecionar para a subseção principal ou manter na atual.
+                console.log("Página em construção ou é apenas um menu pai: " + pageId);
+                // Opcional: mostrar a home se não achar
+                // document.getElementById('home').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

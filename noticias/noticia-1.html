@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seminário Diocesano - Website</title>
+    <style>
+        /* --- VARIÁVEIS DE CORES (Paleta Dourada/Amarela/Branca) --- */
+        :root {
+            --cor-branco: #ffffff;
+            --cor-creme: #FAFAD2; /* LightGoldenRodYellow */
+            --cor-dourado-claro: #F0E68C; /* Khaki */
+            --cor-dourado-medio: #DAA520; /* GoldenRod */
+            --cor-dourado-escuro: #B8860B; /* DarkGoldenRod */
+            --cor-texto: #333333;
+            --cor-cinza-claro: #f4f4f4;
+        }
+
+        /* --- RESET BÁSICO --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--cor-cinza-claro);
+            color: var(--cor-texto);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- CABEÇALHO --- */
+        header {
+            background-color: var(--cor-branco);
+            border-bottom: 3px solid var(--cor-dourado-medio);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-area {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--cor-creme);
+        }
+
+        .logo-area h1 {
+            color: var(--cor-dourado-escuro);
+            font-family: 'Georgia', serif; /* Fonte mais clássica para religião */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- NAVEGAÇÃO (MENU) --- */
+        nav {
+            background-color: var(--cor-dourado-medio);
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav ul li {
+            position: relative;
+        }
+
+        /* Links do Menu Principal */
+        nav ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--cor-branco);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--cor-dourado-escuro);
+        }
+
+        /* --- SUBMENU (DROPDOWN) --- */
+        nav ul li ul {
+            display: none; /* Escondido por padrão */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--cor-branco);
+            border-top: 3px solid var(--cor-dourado-escuro);
+            min-width: 220px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            flex-direction: column;
+        }
+
+        nav ul li ul li a {
+            color: var(--cor-texto);
+            padding: 10px 15px;
+            font-weight: normal;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav ul li ul li a:hover {
+            background-color: var(--cor-creme);
+            color: var(--cor-dourado-escuro);
+        }
+
+        /* Mostrar submenu ao passar o mouse */
+        nav ul li:hover > ul {
+            display: flex;
+        }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        main {
+            flex: 1;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .page-section {
+            display: none; /* Esconde todas as seções inicialmente */
+            background: var(--cor-branco);
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--cor-dourado-medio);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page-section.active {
+            display: block; /* Mostra apenas a ativa */
+        }
+
+        h2 {
+            color: var(--cor-dourado-escuro);
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--cor-dourado-claro);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--cor-dourado-medio);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        /* --- RODAPÉ --- */
+        footer {
+            background-color: var(--cor-dourado-escuro);
+            color: var(--cor-branco);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* --- ANIMAÇÃO --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- BOTÃO GENÉRICO --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--cor-dourado-medio);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: var(--cor-dourado-escuro);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1>Seminário Diocesano</h1>
+            <p>Fides et Ratio (Fé e Razão)</p>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('home')">Home</a></li>
+                
+                <li>
+                    <a href="#" onclick="showPage('seminario')">O Seminário ▾</a>
+                    <ul>
+                        <li><a href="#" onclick="showPage('seminario-historia')">Nossa História</a></li>
+                        <li><a href="#" onclick="showPage('seminario-missao')">Missão e Valores</a></li>
+                        <li><a href="#" onclick="showPage('seminario-lideranca')">Liderança (Reitores)</a></li>
+                        <li><a href="#" onclick="showPage('seminario-estrutura')">Estrutura e Localização</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" onclick="showPage('vocacional')">Vocacional ▾</a>
+                    <ul>
+                        <li><a href="#" onclick="showPage('vocacional-oquee')">O que é Vocação?</a></li>
+                        <li><a href="#" onclick="showPage('vocacional-discernimento')">Discernimento</a></li>
+                        <li><a href="#" onclick="showPage('vocacional-encontros')">Encontros Vocacionais</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" onclick="showPage('formacao')">Formação ▾</a>
+                    <ul>
+                        <li><a href="#" onclick="showPage('formacao-admissao')">Admissão</a></li>
+                        <li><a href="#" onclick="showPage('formacao-cursos')">Cursos (Filo/Teo)</a></li>
+                        <li><a href="#" onclick="showPage('formacao-docente')">Corpo Docente</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#" onclick="showPage('vida')">Vida Seminarística ▾</a>
+                    <ul>
+                        <li><a href="#" onclick="showPage('vida-rotina')">Rotina e Espiritualidade</a></li>
+                        <li><a href="#" onclick="showPage('vida-instalacoes')">Nossas Instalações</a></li>
+                        <li><a href="#" onclick="showPage('vida-galeria')">Galeria de Fotos</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#" onclick="showPage('noticias')">Notícias</a></li>
+                <li><a href="#" onclick="showPage('contato')">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content-area">
+        
+        <article class="page-section active" style="display:block; animation: fadeIn 0.5s ease;">
+    
+    <div style="margin-bottom: 20px;">
+        <a href="#" onclick="carregarPagina('paginas/noticias.html')" style="text-decoration: none; color: var(--cor-dourado-medio); font-weight: bold;">
+            &larr; Voltar para Notícias
+        </a>
+    </div>
+
+    <header style="margin-bottom: 30px; text-align: center;">
+        <h1 style="color: var(--cor-dourado-escuro); font-family: 'Georgia', serif; font-size: 2.5em; margin-bottom: 10px;">
+            Solenidade de Ordenação Diaconal
+        </h1>
+        <p style="color: #666; font-size: 0.9em; border-bottom: 1px solid var(--cor-dourado-claro); display: inline-block; padding-bottom: 5px;">
+            <span style="color: var(--cor-dourado-medio);">Eventos</span> &bull; 05 de Dezembro de 2025
+        </p>
+    </header>
+
+    <figure style="margin-bottom: 30px;">
+        <div style="width: 100%; height: 400px; background-color: #ddd; background-image: url('https://via.placeholder.com/1200x600/DAA520/FFFFFF?text=Ordenacao+Diaconal'); background-size: cover; background-position: center; border-radius: 4px; border: 4px solid var(--cor-creme);"></div>
+        <figcaption style="font-size: 0.8em; color: #888; text-align: center; margin-top: 5px;">
+            Cerimônia realizada na Catedral Diocesana.
+        </figcaption>
+    </figure>
+
+    <div class="noticia-texto" style="font-size: 1.1em; line-height: 1.8; color: #444; max-width: 800px; margin: 0 auto;">
+        <p style="margin-bottom: 20px;">
+            <strong style="font-size: 1.2em; color: var(--cor-dourado-escuro);">N</strong>este último fim de semana, nossa diocese viveu um momento de profunda graça e alegria. Com a imposição das mãos de nosso Bispo Diocesano, três seminaristas concluíram sua etapa formativa e deram o "sim" definitivo ao serviço do altar.
+        </p>
+        
+        <p style="margin-bottom: 20px;">
+            A celebração contou com a presença de todo o clero, familiares e fiéis das diversas paróquias por onde os novos diáconos passaram durante seu estágio pastoral. Em sua homilia, o Bispo ressaltou a importância do serviço (diaconia) como fundamento para o futuro sacerdócio.
+        </p>
+
+        <blockquote style="background: var(--cor-creme); border-left: 5px solid var(--cor-dourado-medio); margin: 30px 0; padding: 20px; font-style: italic; color: #555;">
+            "O diácono é, antes de tudo, a imagem do Cristo Servidor, que não veio para ser servido, mas para servir."
+        </blockquote>
+
+        <p style="margin-bottom: 20px;">
+            Após a missa, houve uma confraternização no salão paroquial. Pedimos a todos que continuem rezando pela perseverança destes jovens e pelas vocações sacerdotais.
+        </p>
+    </div>
+
+    <hr style="border: 0; border-top: 1px solid var(--cor-dourado-claro); margin: 40px 0;">
+
+    <section>
+        <h3 style="color: var(--cor-dourado-medio); text-align: center; margin-bottom: 20px;">Galeria de Fotos</h3>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            
+            <div style="overflow: hidden; border-radius: 4px; border: 2px solid var(--cor-creme); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <img src="https://via.placeholder.com/400x300/F0E68C/333?text=Rito+Central" alt="Foto 1" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+
+            <div style="overflow: hidden; border-radius: 4px; border: 2px solid var(--cor-creme); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <img src="https://via.placeholder.com/400x300/B8860B/FFF?text=Clero" alt="Foto 2" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+
+            <div style="overflow: hidden; border-radius: 4px; border: 2px solid var(--cor-creme); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <img src="https://via.placeholder.com/400x300/DAA520/FFF?text=Familiares" alt="Foto 3" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+
+            <div style="overflow: hidden; border-radius: 4px; border: 2px solid var(--cor-creme); box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <img src="https://via.placeholder.com/400x300/FFF8DC/333?text=Bencao" alt="Foto 4" style="width: 100%; height: 200px; object-fit: cover; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+            </div>
+
+        </div>
+    </section>
+
+</article>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Seminário Diocesano. Todos os direitos reservados.</p>
+        <p>Desenvolvido para fins educacionais.</p>
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            // 1. Esconde todas as seções
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Tenta encontrar a seção específica
+            const targetSection = document.getElementById(pageId);
+            
+            // 3. Se a seção existir, mostra ela. Se não (ex: links genéricos), mostra um alerta ou a Home.
+            if (targetSection) {
+                targetSection.classList.add('active');
+            } else {
+                // Se clicou em um link pai que não tem conteúdo próprio definido no HTML acima,
+                // apenas para o exemplo, vamos redirecionar para a subseção principal ou manter na atual.
+                console.log("Página em construção ou é apenas um menu pai: " + pageId);
+                // Opcional: mostrar a home se não achar
+                // document.getElementById('home').classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
